@@ -10,18 +10,15 @@ import numpy as np
 
 # Reading in a practice dataframe for plotly graphs.
 df = pd.read_csv("D:\GapminderFiveYearData.csv")
-df.head(1)
-
 # Created an options list for dropdowm menue.
 options=df[['pop','lifeExp','gdpPercap']]
 # Saving only the continent names for each row and saving it in a list for later.
 CountryNames=list(df.country.unique())
 Yearlist=list(df.year.unique())
-Yearlist
 # Establishing the dash application
 app=dash.Dash()
 # Establishing the title for the web page of the Dash application.
-app.title='Dash Tutorial 2'
+app.title='World GDP dashboard'
 # The body of the entire application below
 app.layout=html.Div([
     # First Div containing the dropdown menues for the scatterplot at the top of the page.
@@ -52,12 +49,6 @@ app.layout=html.Div([
     ),
     ]),
     html.Div([
-        #html.Label(['X-axis']),
-        # dcc.Dropdown(
-        # id='xaxis_dropdown1',
-        # options={'label':'year', 'value':'year'},
-        # value='year'
-        # ),
         html.Label(['Y-axis']),
         dcc.Dropdown(
         id='yaxis_dropdown1',
@@ -138,7 +129,6 @@ def update_graph_Scatter(xaxis_dropdown,yaxis_dropdown,selected_year):
         facet_col='continent'
     )
     Scatterchart.update_layout(transition_duration=500,height=700)
-    #Scatterchart.for_each_trace(lambda trace: trace.update(marker_symbol="square") if trace.name == "Africa" else (),)
     return(Scatterchart)
 
 
